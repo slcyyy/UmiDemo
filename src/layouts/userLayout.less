@@ -1,0 +1,41 @@
+@import '~antd/es/style/themes/default.less'; //引入antd变量
+//https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-image: url(../assets/img/background.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.head {
+  background: rgba(0, 0, 0, 0);
+  // .global(.ant-space){
+
+  // }
+  :global(.ant-space) {
+    margin-top: 10px;
+  }
+  .title {
+    color: #ffffff;
+    font-size: 26px;
+    font-family: PangMen, 'Microsoft Yahei', Helvetica, Arial, Verdana, Tahoma,
+      sans-serif;
+  }
+}
+.content {
+  flex: 1; // flex单值无单位数被认作 number 1 0,flex-shrink会被假定为1;
+}
+.footer {
+  text-align: center;
+  background: rgba(0, 0, 0, 0);
+  font-size: 16px;
+  color: #ffffff;
+  font-family: PangMen, 'Microsoft Yahei', Helvetica, Arial, Verdana, Tahoma,
+    sans-serif;
+  .copySignal {
+    user-select: none;
+    padding: 0 0.25em;
+  }
+}

@@ -1,18 +1,23 @@
-import React from 'react'
+/*
+ * @Date: 2021-02-02 09:46:43
+ * @LastEditors: LuoChun
+ * @LastEditTime: 2021-02-20 15:49:16
+ */
+import React from 'react';
 import { Table, Tag, Space } from 'antd';
-import { connect } from 'umi'
+import { connect } from 'umi';
 
-const index = ({users})=>{
+const index = ({ users }) => {
   const columns = [
     {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
-      render: text => <a>{text}</a>,
+      render: (text) => <a>{text}</a>,
     },
     {
       title: 'id',
-      dataIndex:  'id',
+      dataIndex: 'id',
       key: 'id',
     },
     {
@@ -31,13 +36,18 @@ const index = ({users})=>{
       ),
     },
   ];
-  
-  return(
+
+  return (
     <div>
-      <Table style={{width:'50%',padding:'10px',margin:'0 auto'}} rowKey="id" columns={columns} dataSource={users.data} />
+      <Table
+        style={{ width: '50%', padding: '10px', margin: '0 auto' }}
+        rowKey="id"
+        columns={columns}
+        dataSource={users.data}
+      />
     </div>
-  )
-}
+  );
+};
 
 //{users:[]} 从state对象映射到props;users loading
 // const mapStateToProps = ({users})=>{
@@ -47,10 +57,9 @@ const index = ({users})=>{
 // }
 
 //可以省略为
-const mapStateToProps = ({users})=>
-({
-   users
-})
+const mapStateToProps = ({ users }) => ({
+  users,
+});
 
-
-export default connect(mapStateToProps)(index)
+//connect 绑定数据到组件
+export default connect(mapStateToProps)(index);
