@@ -4,7 +4,7 @@
  * @LastEditTime: 2021-02-20 10:39:04
 -->
 # umi project
-react+antd+dva+umi 一个技术中台的纯净模板
+react+antd+dva+umi 一个中台的纯模板
 ## Getting Started
 
 Install dependencies,
