@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-12-29 15:36:28
  * @LastEditors: LuoChun
- * @LastEditTime: 2021-03-12 17:28:56
+ * @LastEditTime: 2021-04-09 15:24:49
  */
 export default [
   { exact: true, path: '/', component: '@/pages/homepage' },
@@ -21,6 +21,11 @@ export default [
         component: 'user/login',
       },
     ],
+  },
+  {
+    name: 'editor',
+    path: '/editor',
+    component: '@/pages/visual-editor',
   },
   // { path: '/users',component:'@/pages/users'}
 ];
