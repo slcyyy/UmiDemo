@@ -1,11 +1,11 @@
 /*
  * @Date: 2021-02-02 09:46:43
  * @LastEditors: LuoChun
- * @LastEditTime: 2021-03-11 09:00:28
+ * @LastEditTime: 2021-04-13 09:56:41
  */
 import React, { useEffect, useState } from 'react';
 import styles from './index.less';
-import { Line, Area, Column } from '@ant-design/charts';
+// import { Line, Area, Column } from '@ant-design/charts';
 export default () => {
   const [data, setData] = useState([]);
   var data2 = [
@@ -181,15 +181,14 @@ export default () => {
     columnStyle: {
       cursor: 'pointer',
     },
-    marginRatio: 0, //分组中柱子的间隔 一定得让x轴的间隔大于
   };
   return (
     <div className={styles.homepage}>
       <h1 className={styles.title}>Page index</h1>
       <div className={styles.chartWrapper}>
-        <Line {...config1} chartRef={(chartRef) => (ref = chartRef)} />
+        {/* <Line {...config1} chartRef={(chartRef) => (ref = chartRef)} />
         <Area {...config2} />
-        <Column {...config3} />
+        <Column {...config3} /> */}
       </div>
     </div>
   );

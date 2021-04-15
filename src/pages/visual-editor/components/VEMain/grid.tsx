@@ -1,15 +1,15 @@
 /*
  * @Date: 2021-04-12 11:16:54
  * @LastEditors: LuoChun
- * @LastEditTime: 2021-04-12 17:49:28
+ * @LastEditTime: 2021-04-13 09:19:21
  */
 import React from 'react';
 import styles from '../../styles.less';
 
-const grid = () => {
+const Grid: React.FC<{}> = () => {
   return (
     <svg
-      className="grid"
+      className={styles.grid}
       width="100%"
       height="100%"
       xmlns="http://www.w3.org/2000/svg"
@@ -25,7 +25,7 @@ const grid = () => {
             d="M 7.236328125 0 L 0 0 0 7.236328125"
             fill="none"
             stroke="rgba(207, 207, 207, 0.3)"
-            stroke-width="1"
+            strokeWidth="1"
           ></path>
         </pattern>
         <pattern
@@ -43,7 +43,7 @@ const grid = () => {
             d="M 36.181640625 0 L 0 0 0 36.181640625"
             fill="none"
             stroke="rgba(186, 186, 186, 0.5)"
-            stroke-width="1"
+            strokeWidth="1"
           ></path>
         </pattern>
       </defs>
@@ -52,4 +52,4 @@ const grid = () => {
   );
 };
 
-export default grid;
+export default Grid;
