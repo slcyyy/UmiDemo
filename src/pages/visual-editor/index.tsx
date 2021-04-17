@@ -1,7 +1,7 @@
 /*
  * @Date: 2021-04-09 14:47:23
  * @LastEditors: LuoChun
- * @LastEditTime: 2021-04-15 15:57:15
+ * @LastEditTime: 2021-04-18 00:18:04
  */
 import React, { Component } from 'react';
 import VELeft from './components/VELeft';
@@ -19,6 +19,7 @@ const VisualEditor: React.FC<ConnectProps> = ({ dispatch }) => {
    * @param e
    */
   const handleDragOver = (e: any) => {
+    // console.log('dragover')
     e.preventDefault();
     e.dataTransfer.dropEffect = 'copy'; // 属性控制在拖放操作中给用户的反馈（通常是视觉上的）
   };
@@ -30,8 +31,9 @@ const VisualEditor: React.FC<ConnectProps> = ({ dispatch }) => {
    */
   const handleDrop = (e: any) => {
     // e.persist()
+    console.log('drop');
     e.preventDefault(); //默认事件有哪些啊，为什么要阻止啊
-    e.stopPropagation(); // 冒泡是？？？
+    e.stopPropagation(); // 冒泡是从内而外
     let propertyId = e.dataTransfer.getData('propertyId'); // 获取要添加的属性
     let component;
     if (Number(propertyId) === 100) {

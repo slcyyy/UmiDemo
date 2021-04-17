@@ -1,15 +1,15 @@
 /*
  * @Date: 2021-04-09 15:30:26
  * @LastEditors: LuoChun
- * @LastEditTime: 2021-04-15 16:01:03
+ * @LastEditTime: 2021-04-18 00:18:18
  */
 import React, { useEffect } from 'react';
 import Grid from './grid';
 import CustomWrapper from '../custom-drag-components/CustomWrapper';
 import { connect, ConnectProps } from 'umi';
 import {
-  InputComponent,
-  TextComponent,
+  ConfigInputBox,
+  DIYTextBox,
 } from '../custom-drag-components/CustomComponents';
 import styles from '../../styles.less';
 
@@ -21,18 +21,25 @@ const VEMain: React.FC<ConnectProps> = (props) => {
    * @method 判断拖拽哪个组件到编辑面板
    * @returns
    */
-  const judgeComponent = (props: any) => {
-    const { componentId, propValues, propStyles } = props;
+  const judgeComponent = (props: any, index: number) => {
+    const { componentId, propValues, propStyles, propertyId } = props;
     switch (componentId) {
       case 1:
-        return InputComponent({ propValues, propStyles });
+        return (
+          <ConfigInputBox
+            key={`${propertyId}+'-'+${index}`}
+            propValues={propValues}
+            propStyles={propStyles}
+          />
+        );
       case 100:
-        return TextComponent({ propValues, propStyles });
+        return <DIYTextBox propValues={propValues} propStyles={propStyles} />;
       default:
         break;
     }
   };
   return (
+    // onMouseDown = {}
     <div className={styles.main}>
       <Grid />
       {componentData &&
@@ -42,7 +49,7 @@ const VEMain: React.FC<ConnectProps> = (props) => {
             key={`${item.propertyId}+'-'+${index}`}
             coordinates={item.coordinates}
           >
-            {judgeComponent(item)}
+            {judgeComponent(item, index)}
           </CustomWrapper>
         ))}
 
