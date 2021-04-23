@@ -1,7 +1,7 @@
 /*
  * @Date: 2021-04-09 15:30:26
  * @LastEditors: LuoChun
- * @LastEditTime: 2021-04-18 00:18:18
+ * @LastEditTime: 2021-04-22 15:50:23
  */
 import React, { useEffect } from 'react';
 import Grid from './grid';
@@ -15,7 +15,7 @@ import styles from '../../styles.less';
 
 const VEMain: React.FC<ConnectProps> = (props) => {
   const { editor } = props;
-  const { componentData } = editor;
+  const { componentData, isClickComponentStatus } = editor;
 
   /**
    * @method 判断拖拽哪个组件到编辑面板
@@ -38,18 +38,48 @@ const VEMain: React.FC<ConnectProps> = (props) => {
         break;
     }
   };
+
+  /**
+   * @method
+   * @param e
+   */
+  const handleMouseDown = (e: any) => {
+    console.log('1handleMousedown', isClickComponentStatus);
+    if (!isClickComponentStatus) {
+      console.log('mainmousedown');
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  };
+
+  const handleMouseUp = (e: any) => {
+    // console.log('2handleMouseUp',isClickComponentStatus)
+    // // if(!isClickComponentStatus){
+    //   e.preventDefault()
+    //   e.stopPropagation()
+    // // }
+  };
+
   return (
     // onMouseDown = {}
-    <div className={styles.main}>
-      <Grid />
+    <div
+      className={styles.main}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+    >
+      {/* <Grid /> */}
       {componentData &&
         componentData.map((item, index) => (
           // key是因为自定义文本的属性都是一样的
           <CustomWrapper
-            key={`${item.propertyId}+'-'+${index}`}
-            coordinates={item.coordinates}
+            key={item.propertyId}
+            current={item}
+            // coordinates={item.coordinates}
+            // size={item.size}
           >
+            {/* <Shape> */}
             {judgeComponent(item, index)}
+            {/* </Shape> */}
           </CustomWrapper>
         ))}
 

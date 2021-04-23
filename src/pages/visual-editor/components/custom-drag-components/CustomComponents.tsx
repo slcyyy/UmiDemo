@@ -1,7 +1,7 @@
 /*
  * @Date: 2021-04-13 14:39:36
  * @LastEditors: LuoChun
- * @LastEditTime: 2021-04-16 15:28:11
+ * @LastEditTime: 2021-04-21 14:27:35
  * @Description: 编辑面板中的拖拽组件
  */
 import React, { useState } from 'react';
@@ -58,7 +58,11 @@ export const ConfigInputBox = (props: ComponentProps) => {
     // }
     return undefined;
   };
-
+  const handleMouseUp = (e: any) => {
+    console.log('3handleMouseUp');
+    e.preventDefault();
+    e.stopPropagation();
+  };
   return (
     <div className={styles.customInputWrapper}>
       {/* 不用textare是为了方便缩放，和元素自身的换行，毕竟textarea需要自定义rows,多行的话会折叠，出现一个overflow；且可以不用定义width和height,可以让其自适应 */}
@@ -67,6 +71,7 @@ export const ConfigInputBox = (props: ComponentProps) => {
         suppressContentEditableWarning={true}
         onDoubleClick={dbClick(0)}
         onMouseDown={(e) => handleMouseDown(e, 0)}
+        onMouseUp={handleMouseUp}
         onBlur={handleBlur(0)}
         style={{ ...labelStyles }}
       >

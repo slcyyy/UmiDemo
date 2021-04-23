@@ -1,7 +1,7 @@
 /*
  * @Date: 2021-04-13 13:43:47
  * @LastEditors: LuoChun
- * @LastEditTime: 2021-04-15 16:00:19
+ * @LastEditTime: 2021-04-21 13:59:43
  * @Description: 默认显示的模板上的数据（如有保存则由后台传入）
  */
 
@@ -15,8 +15,6 @@ export const customDataList = [
     },
     propStyles: {
       label: {
-        // width: 200,
-        // height: 50,
         fontSize: 16,
         fontFmaily: 'SimSun ', //字体
         letterSpacing: 'normal', //字间距
@@ -31,8 +29,6 @@ export const customDataList = [
         textAlign: 'left',
       },
       value: {
-        // width: 200,
-        // height: 50,
         fontSize: 16,
         fontFmaily: 'SimSun ', //字体
         letterSpacing: 'normal', //字间距
@@ -40,6 +36,10 @@ export const customDataList = [
         fontWeight: '400',
         textAlign: 'left',
       },
+    },
+    size: {
+      width: '200',
+      height: '30',
     },
     coordinates: {
       x: 0,
@@ -64,6 +64,10 @@ export const customDataList = [
     coordinates: {
       x: 0,
       y: 0,
+    },
+    size: {
+      width: '200',
+      height: '30',
     },
   },
 ];
