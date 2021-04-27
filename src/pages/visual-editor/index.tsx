@@ -1,17 +1,17 @@
 /*
  * @Date: 2021-04-09 14:47:23
  * @LastEditors: LuoChun
- * @LastEditTime: 2021-04-23 17:42:53
+ * @LastEditTime: 2021-04-25 19:18:16
  */
 import React, { Component } from 'react';
-import VELeft from './components/VELeft';
-import VEMain from './components/VEMain';
+import VELeft from './components/VEMain/components/VELeft';
+import VEMain from './components/VEMain/VEMain';
 import { deepCopy } from '@/utils/utils';
 import { customDataList } from './components/custom-drag-components/customDataList'; //前端自定义的组件数据
 import { propertyList } from './data'; //后台获取的属性数据
 import { connect, ConnectProps } from 'umi';
 import styles from './styles.less';
-import { Row, Col } from 'antd';
+import { Row, Col, Button } from 'antd';
 
 const VisualEditor: React.FC<ConnectProps> = ({
   dispatch,
@@ -81,12 +81,18 @@ const VisualEditor: React.FC<ConnectProps> = ({
   };
 
   return (
-    <Row className={styles.VEContainer}>
-      {/* 拖拽属性 */}
+    <div className={styles.editModel}>
+      <div className={styles.VETitle}>
+        <h1 className={styles.title}>新增虚拟卡模板</h1>
+        <Button className={styles.backBtn}>返回</Button>
+      </div>
+
+      <VEMain />
+
+      {/* <Row className={styles.VEContainer}>
       <Col span={4} className={styles.VELeft}>
         <VELeft />
       </Col>
-      {/* 放置区 */}
       <Col
         span={16}
         className={styles.VEMain}
@@ -98,7 +104,8 @@ const VisualEditor: React.FC<ConnectProps> = ({
         <VEMain />
       </Col>
       <Col span={4} className={styles.VERight}></Col>
-    </Row>
+    </Row> */}
+    </div>
   );
 };
 

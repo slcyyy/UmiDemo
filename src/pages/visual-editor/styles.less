@@ -1,57 +1,201 @@
-.VEContainer {
-  width: 100%;
-  height: 100vh;
-  background: #fff;
-  .VELeft {
-    height: 100%;
-    .componentWrapper {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      padding: 10px;
-      .dragChild {
-        border: 1px solid gold;
-        margin: 5px 0px;
-        width: auto;
-        height: 25px;
-        cursor: grab;
-      }
+.editModel {
+  background: #f0f2f5;
+  height: 100%;
+  .VETitle {
+    width: 100%;
+    height: 59px;
+    background: #fff;
+    padding: 0 23px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 1px 0px 0px #dddddd;
+    box-sizing: border-box;
+    .title {
+      font-size: 20px;
+      color: rgba(0, 0, 0, 0.85);
+      margin: 0;
+    }
+    .backBtn {
+      float: right;
     }
   }
   .VEMain {
-    position: relative;
-    height: 100%;
-    border-left: 1px solid rgba(0, 0, 0, 0.6);
-    border-right: 1px solid rgba(0, 0, 0, 0.6);
-    .main {
+    width: 100%;
+    height: calc(100% - 59px);
+    background: #f0f2f5;
+    padding: 24px 24px 0 24px;
+    border-radius: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    .recallBox {
       width: 100%;
-      height: 100%;
-      position: relative;
-      :global(.react-draggable) {
-        cursor: move;
+      height: 50px;
+      padding-left: 24px;
+      line-height: 50px;
+      background: #fafafa;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      .icon {
+        width: 13px;
+        height: 14px;
+        margin-right: 20px;
       }
-      .rndBox {
-        border: 1px dashed #59c7f9;
-        // position: absolute;
-        .dragBox {
-          position: absolute; // 会重合
-          display: inline-block;
-          width: auto;
-          height: auto;
+    }
+    .container {
+      width: 100%;
+      height: calc(100% - 50px);
+      display: flex;
+      flex-wrap: no-wrap;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      .VELeft {
+        width: 300px;
+        height: 100%;
+        background: #ffffff;
+        border-right: 1px solid rgba(0, 0, 0, 0.08);
+        // border-right:1px solid rgba(0,0,0,0.08);
+        :global(.ant-collapse-header) {
+          background-color: #eff3f6;
+          font-size: 16px;
+          color: #333333;
+        }
+        :global(.ant-collapse-content) {
+          background-color: #ffffff;
+        }
+        :global(.ant-collapse-content-box) {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+        :global(.ant-upload-list-item-info) {
+          max-width: 200px !important;
+        }
+        :global(.ant-input-group-wrapper) {
+          border-left: 2px solid #5c9ef7;
+        }
+        input {
+          color: rgba(0, 0, 0, 0.65);
+        }
+
+        .uploadCard {
+          p {
+            font-size: 14px;
+            margin: 0;
+          }
+          .cardUploadbox {
+            margin-top: 11px;
+            background-color: #f2f2f2;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 192px;
+            height: 80px;
+            :global(.ant-upload) {
+              text-align: center;
+            }
+          }
+          .cardUploadbox:hover,
+          .cardUploadbox:focus {
+            border: 1px dashed #5c9ef7;
+          }
+        }
+
+        .uploadLogo {
+          margin-top: 16px;
+          margin-bottom: 22px;
+          p {
+            font-size: 14px;
+            margin-bottom: 11px;
+          }
+        }
+        .unitName {
+          margin-bottom: 4px;
+        }
+        .componentWrapper {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          margin-top: 4px;
+
+          .dragChild {
+            margin-bottom: 10px;
+            cursor: grab;
+            border: 1px solid #d9d9d9;
+            border-collapse: collapse;
+            :global(.ant-input:hover) {
+              border-color: #d9d9d9;
+              cursor: grab;
+            }
+            :global(.ant-input:focus) {
+              border-color: #d9d9d9;
+              cursor: grab;
+            }
+            :global(.ant-input-group-addon) {
+              border-right: none;
+              border-top: none;
+              border-bottom: none;
+            }
+            input {
+              border-right: none;
+              border-top: none;
+              border-bottom: none;
+            }
+          }
+          .dragChild:hover {
+            border-color: #1890ff;
+          }
         }
       }
+
+      .VEEdit {
+        position: relative;
+        width: 100%;
+        background-color: #fff;
+        .cardBackground {
+          width: 392px;
+          height: 235px;
+          border-radius: 8px;
+          margin: 0 auto;
+          position: relative;
+          top: calc(50vh - 250px);
+          background-size: auto;
+          background-repeat: 'no-repeat';
+        }
+        // .editWrapper {
+        //   width: 100%;
+        //   height: 100%;
+        //   position: relative;
+        //   :global(.react-draggable) {
+        //     cursor: move;
+        //   }
+        //   .rndBox {
+        //     border: 1px dashed #59c7f9;
+        //     // position: absolute;
+        //     .dragBox {
+        //       position: absolute; // 会重合
+        //       display: inline-block;
+        //       width: auto;
+        //       height: auto;
+        //     }
+        //   }
+        // }
+        .grid {
+          // z-index:-10;
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+      }
+      .VERight {
+        width: 240px;
+        border-left: 1px solid rgba(0, 0, 0, 0.05);
+        background: #ffffff;
+      }
+      .dragComponent {
+        cursor: grab;
+      }
+      .dragging {
+        border: 1px solid red;
+      }
     }
-    .grid {
-      // z-index:-10;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-  }
-  .dragComponent {
-    cursor: grab;
-  }
-  .dragging {
-    border: 1px solid red;
   }
 }
