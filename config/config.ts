@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-12-29 15:36:03
  * @LastEditors: LuoChun
- * @LastEditTime: 2021-04-13 16:16:58
+ * @LastEditTime: 2021-04-28 15:15:59
  */
 /**
  * umi的配置文件
@@ -15,6 +15,7 @@ export default defineConfig({
   antd: {},
   dva: {
     hmr: true, //热更新
+    // immer: { enableES5: true } //兼容 IE11
   },
   proxy: {
     '/api': {

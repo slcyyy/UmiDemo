@@ -1,7 +1,8 @@
 /*
  * @Date: 2021-04-09 15:29:32
  * @LastEditors: LuoChun
- * @LastEditTime: 2021-04-27 17:29:58
+ * @LastEditTime: 2021-04-29 20:36:05
+ * @description 左侧的拖拽数据
  */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'umi';
@@ -34,12 +35,13 @@ const VELeft: React.FC<{}> = () => {
     propertyId: number;
     label: string;
     iconName: string;
+    componentId: string;
   }
   const { Panel } = Collapse;
 
   const dispatch = useDispatch();
   // cuseSelector((state) => state.editor.componentData);
-  const [dragList, setdragList] = useState<VisualEditor.dragList[]>([]);
+  const [dragList, setdragList] = useState<dragList[]>([]);
   const [iconList, seticonList] = useState<any>({});
 
   const [cardLoading, setCardLoading] = useState<boolean>(false);
@@ -74,11 +76,15 @@ const VELeft: React.FC<{}> = () => {
   }, []);
 
   const handleDragStart = (e: any) => {
-    // react中事件都是在冒泡阶段被触发
-    // e.persist() v17会被去掉 只有加了才可以在console中看到  但是为什么需要这个呢？
+    // e.persist() v17会被去掉 只有加了才可以在console中看到
     e.dataTransfer.setData('propertyId', e.target.dataset.propertyid);
+    e.dataTransfer.setData('componentId', e.target.dataset.componentid);
+    e.dataTransfer.setData('label', e.target.dataset.label);
   };
 
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
   /**
    * @method 卡片背景上传时检测
    * @param file
@@ -123,15 +129,19 @@ const VELeft: React.FC<{}> = () => {
     return false;
   };
 
-  const handleChange = (info) => {
-    // console.log('info',info,info.file,info.file.status)
+  const cardFileRemove = () => {
+    setCardFileList([]);
+    dispatch({ type: 'editor/saveUrl', payload: { name: 'card', url: '' } });
   };
+  // const handleChange = (info) => {
+  //   // console.log('info',info,info.file,info.file.status)
+  // };
   return (
     <div className={styles.VELeft}>
       <Collapse
         defaultActiveKey={['1', '2']}
         expandIconPosition="right"
-        bordered={false}
+        bordered={true}
         ghost={true}
       >
         <Panel header="固定参数" key="1">
@@ -145,8 +155,8 @@ const VELeft: React.FC<{}> = () => {
               multiple={false}
               fileList={cardFileList}
               beforeUpload={cardBeforeUpload}
-              onRemove={() => setCardFileList([])}
-              onChange={handleChange}
+              onRemove={cardFileRemove}
+              // onChange={handleChange}
             >
               <div className={styles.cardUploadbox}>
                 {cardImgUrl ? (
@@ -188,12 +198,15 @@ const VELeft: React.FC<{}> = () => {
           <div
             className={styles.componentWrapper}
             onDragStart={handleDragStart}
+            onDragOver={handleDragOver}
           >
             {dragList.map((item, index) => (
               <div
                 className={styles.dragChild}
                 key={index}
                 data-propertyid={item.propertyId}
+                data-componentid={item.componentId}
+                data-label={item.label}
                 draggable
               >
                 <Input

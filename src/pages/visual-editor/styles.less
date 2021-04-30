@@ -1,6 +1,6 @@
 .editModel {
   background: #f0f2f5;
-  height: 100%;
+  height: 100vh;
   .VETitle {
     width: 100%;
     height: 59px;
@@ -22,11 +22,11 @@
   }
   .VEMain {
     width: 100%;
-    height: calc(100% - 59px);
+    height: calc(100% - 60px);
     background: #f0f2f5;
     padding: 24px 24px 0 24px;
     border-radius: 2px;
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
     .recallBox {
       width: 100%;
       height: 50px;
@@ -34,9 +34,30 @@
       line-height: 50px;
       background: #fafafa;
       border: 1px solid rgba(0, 0, 0, 0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       .icon {
         width: 13px;
         height: 14px;
+        margin-right: 20px;
+      }
+      .scale {
+        display: inline-block;
+        margin-right: 20px;
+        line-height: 28px;
+        vertical-align: middle;
+
+        .iconNoMargin {
+          width: 13px;
+          height: 14px;
+        }
+        span {
+          padding: 0 5px;
+          font-size: 14px;
+        }
+      }
+      .save {
         margin-right: 20px;
       }
     }
@@ -46,16 +67,42 @@
       display: flex;
       flex-wrap: no-wrap;
       border: 1px solid rgba(0, 0, 0, 0.08);
+      ::-webkit-scrollbar {
+        /*滚动条整体样式*/
+        width: 6px;
+        /*高宽分别对应横竖滚动条的尺寸*/
+        height: 6px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        /*滚动条里面小方块*/
+        border-radius: 3px;
+        height: 20px;
+        box-shadow: inset 0 0 5px rgba(144, 147, 153, 0.5);
+        -webkit-box-shadow: inset 0 0 5px rgba(144, 147, 153, 0.5);
+        background: rgba(144, 147, 153, 0.5);
+      }
+
+      ::-webkit-scrollbar-track {
+        /*滚动条里面轨道*/
+        box-shadow: inset 0 0 5px rgba(144, 147, 153, 0.3);
+        -webkit-box-shadow: inset 0 0 5px rgba(144, 147, 153, 0.3);
+        border-radius: 0;
+        background: rgba(144, 147, 153, 0.3);
+      }
       .VELeft {
         width: 300px;
         height: 100%;
         background: #ffffff;
         border-right: 1px solid rgba(0, 0, 0, 0.08);
+        overflow-y: auto;
+
         // border-right:1px solid rgba(0,0,0,0.08);
         :global(.ant-collapse-header) {
           background-color: #eff3f6;
           font-size: 16px;
           color: #333333;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
         :global(.ant-collapse-content) {
           background-color: #ffffff;
@@ -150,6 +197,7 @@
         position: relative;
         width: 100%;
         background-color: #fff;
+        overflow: auto;
         .cardBackground {
           width: 392px;
           height: 235px;
@@ -160,24 +208,26 @@
           background-size: auto;
           background-repeat: 'no-repeat';
         }
-        // .editWrapper {
-        //   width: 100%;
-        //   height: 100%;
-        //   position: relative;
-        //   :global(.react-draggable) {
-        //     cursor: move;
-        //   }
-        //   .rndBox {
-        //     border: 1px dashed #59c7f9;
-        //     // position: absolute;
-        //     .dragBox {
-        //       position: absolute; // 会重合
-        //       display: inline-block;
-        //       width: auto;
-        //       height: auto;
-        //     }
-        //   }
-        // }
+
+        :global(.react-draggable) {
+          cursor: move;
+        }
+        .rndBox {
+          // border: 1px dashed rgba(0,132,255,1);
+          .dragBox {
+            position: absolute; // 会重合
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+          }
+          .dragBox:focus {
+            border: 1px dashed rgba(0, 132, 255, 1);
+          }
+        }
+        .rndDragBox {
+          border: 1px dashed rgba(0, 132, 255, 1);
+        }
+
         .grid {
           // z-index:-10;
           position: absolute;
@@ -185,17 +235,70 @@
           left: 0;
         }
       }
+      // 右侧属性栏
       .VERight {
         width: 240px;
         border-left: 1px solid rgba(0, 0, 0, 0.05);
         background: #ffffff;
+        // padding:0;
+        font-size: 16px;
+        position: relative;
+        overflow-y: auto;
+        .title {
+          width: 100%;
+          height: 44px;
+          line-height: 44px;
+          text-align: center;
+          background-color: #eff3f6;
+          font-size: 16px;
+          color: #333333;
+        }
+        .nothingText {
+          font-size: 16px;
+          color: rgba(0, 0, 0, 0.45);
+          margin-top: 11px;
+          text-align: center;
+          // margin:auto 0
+        }
+        .wrapper {
+          width: 100%;
+          padding: 16px;
+          .box {
+            margin-bottom: 20px;
+            color: #333333;
+            label {
+              font-size: 14px;
+              margin-bottom: 3px;
+              display: inline-block;
+            }
+            :global(.ant-select) {
+              width: 100%;
+            }
+          }
+        }
       }
-      .dragComponent {
-        cursor: grab;
+
+      .contextMenu {
+        width: 50px;
+        // height:200px;
+        background-color: #ffffff;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        z-index: 100;
+        position: absolute;
+        text-align: center;
+        span {
+          -webkit-user-select: none;
+        }
+        &:hover {
+          background-color: #e1e2e4;
+        }
       }
-      .dragging {
-        border: 1px solid red;
-      }
+      // .dragComponent {
+      //   cursor: grab;
+      // }
+      // .dragging {
+      //   border: 1px solid red;
+      // }
     }
   }
 }

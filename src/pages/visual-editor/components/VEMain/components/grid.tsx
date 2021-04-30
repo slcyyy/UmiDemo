@@ -1,10 +1,10 @@
 /*
  * @Date: 2021-04-12 11:16:54
  * @LastEditors: LuoChun
- * @LastEditTime: 2021-04-13 09:19:21
+ * @LastEditTime: 2021-04-29 15:52:04
  */
 import React from 'react';
-import styles from '../../styles.less';
+import styles from '../../../styles.less';
 
 const Grid: React.FC<{}> = () => {
   return (
