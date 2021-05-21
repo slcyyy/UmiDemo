@@ -1,7 +1,7 @@
 /*
  * @Date: 2021-04-13 20:28:41
  * @LastEditors: LuoChun
- * @LastEditTime: 2021-04-29 20:12:03
+ * @LastEditTime: 2021-05-12 16:11:00
  * @Description: 包裹组件的外框，确定位置
  */
 import React, { useState, useEffect } from 'react';
@@ -48,6 +48,7 @@ const CustomWrapper: React.FC<WrapperProps> = (props) => {
    * @param d
    */
   const handleDragStop = (e, d) => {
+    console.log(d);
     dispatch({
       type: 'editor/modifyDragBoxByPropetyId',
       payload: { id: propertyId, axis: d },
@@ -79,6 +80,7 @@ const CustomWrapper: React.FC<WrapperProps> = (props) => {
    */
   const handleSelectBox = (e?: any) => {
     // console.log(e.button)
+    console.log('组件点击');
     dispatch({ type: 'editor/setClickComponentsStatus', payload: true });
     if (
       selectedComponentPropertyId.length === 0 ||

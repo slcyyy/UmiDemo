@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-12-29 15:36:28
  * @LastEditors: LuoChun
- * @LastEditTime: 2021-04-09 15:24:49
+ * @LastEditTime: 2021-05-08 10:24:09
  */
 export default [
   { exact: true, path: '/', component: '@/pages/homepage' },
@@ -22,6 +22,20 @@ export default [
       },
     ],
   },
+  //react学习
+  {
+    name: 'react',
+    path: '/react-study',
+    component: '@/pages/react-study',
+    routes: [
+      {
+        name: 'react-eventmouse',
+        path: '/react-study/react-eventmouse',
+        component: '@/pages/react-study/event-mouse',
+      },
+    ],
+  },
+  //可视化卡片定制
   {
     name: 'editor',
     path: '/editor',

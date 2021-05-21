@@ -1,11 +1,12 @@
 /*
  * @Date: 2021-04-25 17:43:28
  * @LastEditors: LuoChun
- * @LastEditTime: 2021-04-30 09:53:43
+ * @LastEditTime: 2021-05-13 13:56:49
  * @Description:
  */
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 // import Grid from './components/grid';
+import classNames from 'classnames';
 import CustomWrapper from '../../custom-drag-components/CustomWrapper';
 import customComponentList from '../../custom-drag-components/customComponentList'; //定义的组件数据
 import { connect, ConnectProps } from 'umi';
@@ -20,7 +21,7 @@ import defaultCard from '@/assets/img/virtual-card/default_card.svg';
 import ContextMenu from './contextMenu';
 import styles from '../../../styles.less';
 
-const VEEdit: React.FC<ConnectProps> = (props) => {
+const VEEdit: React.FC<{}> = (props) => {
   const { editor, dispatch } = props;
   const {
     componentData,
@@ -28,6 +29,7 @@ const VEEdit: React.FC<ConnectProps> = (props) => {
     cardUrl,
     selectedComponentPropertyId,
     menuShow,
+    scale,
   } = editor;
 
   /**
@@ -78,10 +80,10 @@ const VEEdit: React.FC<ConnectProps> = (props) => {
     }
     component.propertyId = propertyId + '-' + (componentData?.length || 0); //属性ID 除自定义文本外可唯一标识需后台数据配置的属性组件
     let [x, y] = [e.nativeEvent.offsetX, e.nativeEvent.offsetY];
-    console.log('yoho', e, x, y);
-    if (x > 192) {
-      x = x - (x - 192);
-    }
+    console.log('yoho', x, y);
+    // if (x > 192) {
+    //   x = x - (x - 192);
+    // }
     component.coordinates.x = x; //关于被触发的DOM的左上角距
     component.coordinates.y = y;
     e.persist();
@@ -91,19 +93,11 @@ const VEEdit: React.FC<ConnectProps> = (props) => {
     return false;
   };
 
-  const handleMouseUp = (e: any) => {
-    // console.log('2handleMouseUp',isClickComponentStatus)
-    // // if(!isClickComponentStatus){
-    //   e.preventDefault()
-    //   e.stopPropagation()
-    // // }
-  };
-
   /**
    * @method
    * @param e
    */
-  const handleMouseDown = (e: any) => {
+  const handleMouseUp = (e: any) => {
     // 如果没有选中组件 在画布上点击时需要调用 e.preventDefault() 防止触发 drop 事件
     if (!isClickComponentStatus || selectedComponentPropertyId.length === 0) {
       e.preventDefault();
@@ -146,28 +140,37 @@ const VEEdit: React.FC<ConnectProps> = (props) => {
 
   return (
     <div className={styles.VEEdit}>
-      <Grid />
-      <div
-        className={styles.cardBackground}
-        style={{
-          backgroundImage: cardUrl ? `url(${cardUrl})` : `url(${defaultCard})`,
-        }}
-        onMouseDown={handleMouseDown}
-        onDragOver={handleDragOver}
-        onDrop={handleDrop}
-      >
-        {componentData &&
-          componentData.map((item, index) => (
-            // key是因为自定义文本的属性都是一样的
-            <CustomWrapper
-              key={item.propertyId}
-              current={item}
-              // onContextMenu={handleContextMenu}
-            >
-              {judgeComponent(item, index)}
-            </CustomWrapper>
-          ))}
-        {menuShow ? <ContextMenu /> : null}
+      <div className={styles.overflowWrapper}>
+        <div
+          // className={styles.cardBackground}
+          className={styles.cardBackground}
+          style={{
+            backgroundImage: cardUrl
+              ? `url(${cardUrl})`
+              : `url(${defaultCard})`,
+            // transform:`scale(${scale},${scale})`,
+            // transformOrigin:'left top'
+            width: `Number(${scale})*400`,
+            height: `Number(${scale})*300`,
+          }}
+          onMouseUp={handleMouseUp}
+          onDragOver={handleDragOver}
+          onDrop={handleDrop}
+        >
+          {componentData &&
+            componentData.map((item, index) => (
+              // key是因为自定义文本的属性都是一样的
+              <CustomWrapper
+                key={item.propertyId}
+                current={item}
+                // onContextMenu={handleContextMenu}
+              >
+                {judgeComponent(item, index)}
+              </CustomWrapper>
+            ))}
+          {menuShow ? <ContextMenu /> : null}
+        </div>
+        {/* <Grid /> */}
       </div>
     </div>
   );

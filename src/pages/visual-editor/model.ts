@@ -1,7 +1,7 @@
 /*
  * @Date: 2021-04-13 15:20:17
  * @LastEditors: LuoChun
- * @LastEditTime: 2021-04-29 20:29:39
+ * @LastEditTime: 2021-05-12 16:13:10
  * @Description: 组件数据流
  */
 import { deepCopy } from '@/utils/utils';
@@ -18,6 +18,7 @@ export interface ModelState {
   menuShow: boolean;
   menuSettings: {};
   editMode: boolean; //是否处于编辑模式 true 编辑 ，false 预览
+  scale: number; //放大缩小倍数
 }
 export interface ModelType {
   namespace: 'editor';
@@ -32,6 +33,7 @@ export interface ModelType {
     setSingleCSS: Reducer;
     setMenu: Reducer;
     deleteComponent: Reducer;
+    setZoomScale: Reducer;
   };
 }
 
@@ -47,6 +49,7 @@ const EditorModel: ModelType = {
     menuShow: false, //是否显示右键菜单
     menuSettings: { x: 0, y: 0 },
     editMode: true,
+    scale: 1,
   },
 
   reducers: {
@@ -143,7 +146,13 @@ const EditorModel: ModelType = {
         ...state,
       };
     },
-
+    setZoomScale(state, { payload }) {
+      // console.log(state.componentData)
+      state.scale = payload;
+      return {
+        ...state,
+      };
+    },
     // 启用 immer 之后
     // save(state, action) {
     //   state.name = action.payload;

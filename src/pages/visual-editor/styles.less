@@ -38,19 +38,31 @@
       justify-content: space-between;
       align-items: center;
       .icon {
-        width: 13px;
+        box-sizing: content-box;
+        width: 14px;
         height: 14px;
         margin-right: 20px;
+        padding: 2px;
+        border-radius: 5px;
+      }
+      .icon:hover {
+        background-color: rgb(221, 218, 218);
       }
       .scale {
         display: inline-block;
-        margin-right: 20px;
+        margin-left: 10px;
         line-height: 28px;
         vertical-align: middle;
 
         .iconNoMargin {
-          width: 13px;
+          box-sizing: content-box;
+          width: 14px;
           height: 14px;
+          padding: 2px;
+          border-radius: 5px;
+        }
+        .iconNoMargin:hover {
+          background-color: rgb(221, 218, 218);
         }
         span {
           padding: 0 5px;
@@ -64,9 +76,10 @@
     .container {
       width: 100%;
       height: calc(100% - 50px);
-      display: flex;
-      flex-wrap: no-wrap;
+      // display: flex;
       border: 1px solid rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow: hidden;
       ::-webkit-scrollbar {
         /*滚动条整体样式*/
         width: 6px;
@@ -91,7 +104,10 @@
         background: rgba(144, 147, 153, 0.3);
       }
       .VELeft {
-        width: 300px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 240px;
         height: 100%;
         background: #ffffff;
         border-right: 1px solid rgba(0, 0, 0, 0.08);
@@ -123,6 +139,7 @@
         }
 
         .uploadCard {
+          text-align: left;
           p {
             font-size: 14px;
             margin: 0;
@@ -194,18 +211,51 @@
       }
 
       .VEEdit {
-        position: relative;
-        width: 100%;
-        background-color: #fff;
+        //note 能溢出显示scroll得是非absolute元素
+        margin-left: 240px;
+        margin-right: 240px;
+        height: 100%;
+        // min-width:1800px;
+        width: calc(
+          100vw - 480px - 48px - 3px
+        ); //-3px是为了能够显示右侧的滑动栏
+        background-color: #ffffff; //#f7f7f7;
         overflow: auto;
+        ::-webkit-scrollbar {
+          /*滚动条整体样式*/
+          width: 10px;
+          /*高宽分别对应横竖滚动条的尺寸*/
+          height: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+          /*滚动条里面小方块*/
+          border-radius: 3px;
+          height: 20px;
+          box-shadow: inset 0 0 5px rgba(144, 147, 153, 0.5);
+          -webkit-box-shadow: inset 0 0 5px rgba(144, 147, 153, 0.5);
+          background: rgba(144, 147, 153, 0.5);
+        }
+
+        ::-webkit-scrollbar-track {
+          /*滚动条里面轨道*/
+          box-shadow: inset 0 0 5px rgba(144, 147, 153, 0.3);
+          -webkit-box-shadow: inset 0 0 5px rgba(144, 147, 153, 0.3);
+          border-radius: 0;
+          background: rgba(144, 147, 153, 0.3);
+        }
+        .overflowWrapper {
+          width: 1920px;
+          height: 1080px;
+        }
         .cardBackground {
-          width: 392px;
-          height: 235px;
+          width: 400px;
+          height: 300px; // 这个卡片的大小设计就不是4:3呀
           border-radius: 8px;
-          margin: 0 auto;
+          left: calc((100vw - 480px - 48px) / 2 - 395px / 2);
           position: relative;
           top: calc(50vh - 250px);
-          background-size: auto;
+          background-size: cover; // 设置为cover,就要求图片必须是按照规定的这个尺寸去上传的，因为这个卡片大小我们是固定的
           background-repeat: 'no-repeat';
         }
 
@@ -229,7 +279,7 @@
         }
 
         .grid {
-          // z-index:-10;
+          z-index: 1;
           position: absolute;
           top: 0;
           left: 0;
@@ -237,13 +287,17 @@
       }
       // 右侧属性栏
       .VERight {
+        position: absolute;
+        right: 0;
+        top: 0;
+        // left
         width: 240px;
         border-left: 1px solid rgba(0, 0, 0, 0.05);
         background: #ffffff;
         // padding:0;
         font-size: 16px;
-        position: relative;
         overflow-y: auto;
+        height: 100%;
         .title {
           width: 100%;
           height: 44px;
