@@ -17,8 +17,9 @@ export default () => {
         {/* 这里如果不写成箭头函数会报错如下，因为onClick希望返回的是一个函数. */}
         {/* Type 'void' is not assignable to type 'MouseEventHandler<HTMLAnchorElement> | undefined' */}
         <Space>
-          <a onClick={() => history.push('/react-study')}>react学习</a>
+          <a onClick={() => history.push('/react-study')}>react学习 </a>
           <a onClick={() => history.push('/editor')}>可视化编辑器</a>
+          zahuishi
         </Space>
       </div>
     </div>
