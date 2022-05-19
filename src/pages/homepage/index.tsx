@@ -12,7 +12,7 @@ import styles from './index.less';
 export default () => {
   return (
     <div className={styles.homepage}>
-      <h1 className={styles.title}>Page index</h1>
+      <h1 className={styles.title}>Page Index</h1>
       <div className={styles.chartWrapper}>
         {/* 这里如果不写成箭头函数会报错如下，因为onClick希望返回的是一个函数. */}
         {/* Type 'void' is not assignable to type 'MouseEventHandler<HTMLAnchorElement> | undefined' */}
