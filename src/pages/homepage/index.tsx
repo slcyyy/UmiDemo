@@ -20,6 +20,7 @@ export default () => {
           <a onClick={() => history.push('/react-study')}>react学习 </a>
           <a onClick={() => history.push('/editor')}>可视化编辑器</a>
           zahuishi1111
+          zahuishi1122222
         </Space>
       </div>
     </div>
